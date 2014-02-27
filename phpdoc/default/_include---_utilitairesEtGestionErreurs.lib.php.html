@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs for page _utilitairesEtGestionErreurs.lib.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="file-name">/include/_utilitairesEtGestionErreurs.lib.php</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-functions">Functions</a>
+			</div>
+	<div class="info-box-body">	
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Regroupe les fonctions utilitaires et de gestion des erreurs.</p>
+	<ul class="tags">
+				<li><span class="field">todo:</span> fonction estMoisValide à définir complètement ou à supprimer</li>
+			</ul>
+		
+			</div>
+</div>
+		
+
+	
+	
+	
+	<a name="sec-functions"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Functions</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<span class="disabled">Functions</span>
+		</div>
+		<div class="info-box-body">	
+			<a name="functionajouterErreur" id="functionajouterErreur"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">ajouterErreur</span> (line <span class="line-number">191</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Ajoute un message dans le tableau des messages d'erreurs.</p>
+<p class="description"><p>Ajoute le message $msg en fin de tableau $tabErr. Ce tableau est passé par  référence afin que les modifications sur ce tableau soient visibles de l'appelant.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			ajouterErreur
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">&$tabErr</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$msg</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$tabErr</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$tabErr</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$msg</span><span class="var-description">: message</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">&$tabErr</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionconvertirDateAnglaisVersFrancais" id="functionconvertirDateAnglaisVersFrancais"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">convertirDateAnglaisVersFrancais</span> (line <span class="line-number">67</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Transforme une date au format format anglais aaaa-mm-jj vers le format</p>
+<p class="description"><p>français jj/mm/aaaa</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> la date au format format français jj/mm/aaaa</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			convertirDateAnglaisVersFrancais
+		</span>
+					(<span class="var-type">$date</span>&nbsp;<span class="var-name">$date</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">$date</span>
+				<span class="var-name">$date</span><span class="var-description">: au format  aaaa-mm-jj</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionconvertirDateFrancaisVersAnglais" id="functionconvertirDateFrancaisVersAnglais"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">convertirDateFrancaisVersAnglais</span> (line <span class="line-number">56</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Transforme une date au format français jj/mm/aaaa vers le format anglais aaaa-mm-jj</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> la date au format anglais aaaa-mm-jj</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			convertirDateFrancaisVersAnglais
+		</span>
+					(<span class="var-type">$date</span>&nbsp;<span class="var-name">$date</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">$date</span>
+				<span class="var-name">$date</span><span class="var-description">: au format  jj/mm/aaaa</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionestDansAnneeEcoulee" id="functionestDansAnneeEcoulee"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">estDansAnneeEcoulee</span> (line <span class="line-number">80</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Indique si une date est incluse ou non dans l'année écoulée.</p>
+<p class="description"><p>Retourne true si la date $date est comprise entre la date du jour moins un an et la  la date du jour. False sinon.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> succès ou échec</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			estDansAnneeEcoulee
+		</span>
+					(<span class="var-type">$date</span>&nbsp;<span class="var-name">$date</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">$date</span>
+				<span class="var-name">$date</span><span class="var-description">: date au format jj/mm/aaaa</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionestDate" id="functionestDate"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">estDate</span> (line <span class="line-number">34</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Vérifie si une chaîne fournie est bien une date valide, au format JJ/MM/AAAA.</p>
+<p class="description"><p>Retrourne true si la chaîne $date est une date valide, au format JJ/MM/AAAA, false sinon.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> succès ou échec</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			estDate
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$date</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$date</span><span class="var-description">: date à vérifier</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionestEntierPositif" id="functionestEntierPositif"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">estEntierPositif</span> (line <span class="line-number">95</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Vérifie si une chaîne fournie est bien numérique entière positive.</p>
+<p class="description"><p>Retrourne true si la valeur transmise $valeur ne contient pas d'autres  caractères que des chiffres, false sinon.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> succès ou échec</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			estEntierPositif
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$valeur</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$valeur</span><span class="var-description">: chaîne à vérifier</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionfiltrerChainePourNavig" id="functionfiltrerChainePourNavig"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">filtrerChainePourNavig</span> (line <span class="line-number">234</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Echappe les caractères considérés spéciaux en HTML par les entités HTML correspondantes.</p>
+<p class="description"><p>Renvoie une copie de la chaîne $str à laquelle les caractères considérés spéciaux  en HTML (tq la quote simple, le guillemet double, les chevrons), auront été  remplacés par les entités HTML correspondantes.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> chaîne échappée</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			filtrerChainePourNavig
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$str</span><span class="var-description">: chaîne à échapper</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionlireDonnee" id="functionlireDonnee"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">lireDonnee</span> (line <span class="line-number">169</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Fournit la valeur d'une donnée transmise par la méthode get (url) ou post   (corps de la requête HTTP).</p>
+<p class="description"><p>Retourne la valeur de la donnée portant le nom $nomDonnee  reçue dans l'url ou corps de requête,  $valDefaut si aucune donnée de nom $nomDonnee ni dans l'url, ni dans corps.  Si le même nom a été transmis à la fois dans l'url et le corps de la requête,  c'est la valeur transmise par l'url qui est retournée.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> valeur de la donnée</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			lireDonnee
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$nomDonnee</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$valDefaut</span> = <span class="var-default">&amp;quot;&amp;quot;</span>])
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$nomDonnee</span><span class="var-description">: nom de la donnée</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$valDefaut</span><span class="var-description">: valeur par défaut</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionlireDonneePost" id="functionlireDonneePost"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">lireDonneePost</span> (line <span class="line-number">146</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Fournit la valeur d'une donnée transmise par la méthode post   (corps de la requête HTTP).</p>
+<p class="description"><p>Retourne la valeur de la donnée portant le nom $nomDonnee reçue dans le corps de la requête http,  $valDefaut si aucune donnée de nom $nomDonnee dans le corps de requête</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> valeur de la donnée</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			lireDonneePost
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$nomDonnee</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$valDefaut</span> = <span class="var-default">&amp;quot;&amp;quot;</span>])
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$nomDonnee</span><span class="var-description">: nom de la donnée</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$valDefaut</span><span class="var-description">: valeur par défaut</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionlireDonneeUrl" id="functionlireDonneeUrl"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">lireDonneeUrl</span> (line <span class="line-number">126</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Fournit la valeur d'une donnée transmise par la méthode get (url).</p>
+<p class="description"><p>Retourne la valeur de la donnée portant le nom $nomDonnee reçue dans l'url,  $valDefaut si aucune donnée de nom $nomDonnee dans l'url</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> valeur de la donnée</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			lireDonneeUrl
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$nomDonnee</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$valDefaut</span> = <span class="var-default">&amp;quot;&amp;quot;</span>])
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$nomDonnee</span><span class="var-description">: nom de la donnée</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$valDefaut</span><span class="var-description">: valeur par défaut</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionnbErreurs" id="functionnbErreurs"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">nbErreurs</span> (line <span class="line-number">202</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retourne le nombre de messages d'erreurs enregistrés.</p>
+<p class="description"><p>Retourne le nombre de messages d'erreurs enregistrés dans le tableau $tabErr.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> nombre de messages d'erreurs</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			nbErreurs
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$tabErr</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$tabErr</span><span class="var-description">: tableau des messages d'erreurs</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionobtenirLibelleMois" id="functionobtenirLibelleMois"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">obtenirLibelleMois</span> (line <span class="line-number">16</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Fournit le libellé en français correspondant à un numéro de mois.</p>
+<p class="description"><p>Fournit le libellé français du mois de numéro $unNoMois.  Retourne une chaîne vide si le numéro n'est pas compris dans l'intervalle [1,12].</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> identifiant de connexion</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			obtenirLibelleMois
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$unNoMois</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$unNoMois</span><span class="var-description">: numéro de mois</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functiontoStringErreurs" id="functiontoStringErreurs"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">toStringErreurs</span> (line <span class="line-number">214</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Fournit les messages d'erreurs sous forme d'une liste à puces HTML.</p>
+<p class="description"><p>Retourne le source HTML, division contenant une liste à puces, d'après les  messages d'erreurs contenus dans le tableau des messages d'erreurs $tabErr.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> source html</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			toStringErreurs
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$tabErr</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$tabErr</span><span class="var-description">: tableau des messages d'erreurs</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionverifierEntiersPositifs" id="functionverifierEntiersPositifs"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">verifierEntiersPositifs</span> (line <span class="line-number">107</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Vérifie que chaque valeur est bien renseignée et numérique entière positive.</p>
+<p class="description"><p>Renvoie la valeur booléenne true si toutes les valeurs sont bien renseignées et  numériques entières positives. False si l'une d'elles ne l'est pas.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> succès ou échec</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">booléen</span>
+		<span class="method-name">
+			verifierEntiersPositifs
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$lesValeurs</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$lesValeurs</span><span class="var-description">: tableau des valeurs</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionverifierLigneFraisHF" id="functionverifierLigneFraisHF"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">verifierLigneFraisHF</span> (line <span class="line-number">251</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Vérifie la validité des données d'une ligne de frais hors forfait.</p>
+<p class="description"><p>Renseigne le tableau des messages d'erreurs d'après les erreurs rencontrées  sur chaque donnée d'une ligne de frais hors forfait : vérifie que chaque  donnée est bien renseignée, le montant est numérique positif, la date valide  et dans l'année écoulée.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			verifierLigneFraisHF
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$date</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$libelle</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$montant</span>, <span class="var-type"></span>&nbsp;<span class="var-name">&$tabErrs</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$tabErrs</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$date</span><span class="var-description">: date d'engagement de la ligne de frais HF</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$libelle</span><span class="var-description">: libellé de la ligne de frais HF</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$montant</span><span class="var-description">: montant de la ligne de frais HF</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$tabErrs</span><span class="var-description">: tableau des messages d'erreurs passé par référence</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">&$tabErrs</span>			</li>
+				</ul>
+		
+	
+</div>
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 27 Feb 2014 18:07:23 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.4</a>
+	</p>
+	</div></body>
+</html>

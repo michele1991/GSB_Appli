@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs for page _bdGestionDonnees.lib.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="file-name">/include/_bdGestionDonnees.lib.php</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-functions">Functions</a>
+			</div>
+	<div class="info-box-body">	
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Regroupe les fonctions d'acc�s aux donn�es.</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Arthur Martin</li>
+				<li><span class="field">todo:</span> Fonctions retournant plusieurs lignes sont � r��crire.</li>
+			</ul>
+		
+			</div>
+</div>
+		
+
+	
+	
+	
+	<a name="sec-functions"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Functions</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<span class="disabled">Functions</span>
+		</div>
+		<div class="info-box-body">	
+			<a name="functionactiverBD" id="functionactiverBD"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">activerBD</span> (line <span class="line-number">31</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">S�lectionne (rend active) la base de donn�es.</p>
+<p class="description"><p>S�lectionne (rend active) la BD pr�d�finie gsb_frais sur la connexion  identifi�e par $idCnx. Retourne true si succ�s, false sinon.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> succ�s ou �chec de s�lection BD</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			activerBD
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$idCnx</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$idCnx</span><span class="var-description">: identifiant de connexion</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionajouterFicheFrais" id="functionajouterFicheFrais"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">ajouterFicheFrais</span> (line <span class="line-number">167</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Ajoute une nouvelle fiche de frais et les �l�ments forfaitis�s associ�s,  Ajoute la fiche de frais du mois de $unMois (MMAAAA) du visiteur  $idVisiteur, avec les �l�ments forfaitis�s associ�s dont la quantit� initiale  est affect�e � 0. Cl�t �ventuellement la fiche de frais pr�c�dente du visiteur.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			ajouterFicheFrais
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$idCnx</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unMois</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unIdVisiteur</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$idCnx</span><span class="var-description">: identifiant de connexion</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unMois</span><span class="var-description">: mois demand� (MMAAAA)</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unIdVisiteur</span><span class="var-description">: id visiteur</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionajouterLigneHF" id="functionajouterLigneHF"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">ajouterLigneHF</span> (line <span class="line-number">278</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Ajoute une nouvelle ligne hors forfait.</p>
+<p class="description"><p>Ins�re dans la BD la ligne hors forfait de libell� $unLibelleHF du montant  $unMontantHF ayant eu lieu � la date $uneDateHF pour la fiche de frais du mois  $unMois du visiteur d'id $unIdVisiteur</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			ajouterLigneHF
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$idCnx</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unMois</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unIdVisiteur</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$uneDateHF</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unLibelleHF</span>, <span class="var-type">double</span>&nbsp;<span class="var-name">$unMontantHF</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$idCnx</span><span class="var-description">: identifiant de connexion</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unMois</span><span class="var-description">: mois demand� (AAMMMM)</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unIdVisiteur</span><span class="var-description">: id du visiteur</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$uneDateHF</span><span class="var-description">: date du frais hors forfait</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unLibelleHF</span><span class="var-description">: libell� du frais hors forfait</span>			</li>
+					<li>
+				<span class="var-type">double</span>
+				<span class="var-name">$unMontantHF</span><span class="var-description">: montant du frais hors forfait</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionconnecterServeurBD" id="functionconnecterServeurBD"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">connecterServeurBD</span> (line <span class="line-number">17</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Se connecte au serveur de donn�es MySql.</p>
+<p class="description"><p>Se connecte au serveur de donn�es MySql � partir de valeurs  pr�d�finies de connexion (h�te, compte utilisateur et mot de passe).  Retourne l'identifiant de connexion si succ�s obtenu, le bool�en false  si probl�me de connexion.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> identifiant de connexion</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">resource</span>
+		<span class="method-name">
+			connecterServeurBD
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+<a name="functiondeconnecterServeurBD" id="functiondeconnecterServeurBD"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">deconnecterServeurBD</span> (line <span class="line-number">47</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Ferme la connexion au serveur de donn�es.</p>
+<p class="description"><p>Ferme la connexion au serveur de donn�es identifi�e par l'identifiant de  connexion $idCnx.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			deconnecterServeurBD
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$idCnx</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$idCnx</span><span class="var-description">: identifiant de connexion</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionexisteFicheFrais" id="functionexisteFicheFrais"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">existeFicheFrais</span> (line <span class="line-number">122</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">V�rifie si une fiche de frais existe ou non.</p>
+<p class="description"><p>Retourne true si la fiche de frais du mois de $unMois (MMAAAA) du visiteur  $idVisiteur existe, false sinon.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> existence ou non de la fiche de frais</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool�en</span>
+		<span class="method-name">
+			existeFicheFrais
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$idCnx</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unMois</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unIdVisiteur</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$idCnx</span><span class="var-description">: identifiant de connexion</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unMois</span><span class="var-description">: mois demand� (MMAAAA)</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unIdVisiteur</span><span class="var-description">: id visiteur</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionfiltrerChainePourBD" id="functionfiltrerChainePourBD"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">filtrerChainePourBD</span> (line <span class="line-number">58</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Echappe les caract�res sp�ciaux d'une cha�ne.</p>
+<p class="description"><p>Envoie la cha�ne $str �chapp�e, c�d avec les caract�res consid�r�s sp�ciaux  par MySql (tq la quote simple) pr�c�d�s d'un \, ce qui annule leur effet sp�cial</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> cha�ne �chapp�e</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			filtrerChainePourBD
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$str</span><span class="var-description">: cha�ne � �chapper</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionmodifierEltsForfait" id="functionmodifierEltsForfait"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">modifierEltsForfait</span> (line <span class="line-number">301</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Modifie les quantit�s des �l�ments forfaitis�s d'une fiche de frais.</p>
+<p class="description"><p>Met � jour les �l�ments forfaitis�s contenus  dans $desEltsForfaits pour le visiteur $unIdVisiteur et  le mois $unMois dans la table LigneFraisForfait, apr�s avoir filtr�  (annul� l'effet de certains caract�res consid�r�s comme sp�ciaux par   MySql) chaque donn�e</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			modifierEltsForfait
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$idCnx</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unMois</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unIdVisiteur</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$desEltsForfait</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$idCnx</span><span class="var-description">: identifiant de connexion</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unMois</span><span class="var-description">: mois demand� (MMAAAA)</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unIdVisiteur</span><span class="var-description">: id visiteur</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$desEltsForfait</span><span class="var-description">: tableau des quantit�s des �l�ments hors forfait  avec pour cl�s les identifiants des frais forfaitis�s</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionmodifierEtatFicheFrais" id="functionmodifierEtatFicheFrais"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">modifierEtatFicheFrais</span> (line <span class="line-number">348</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Modifie l'�tat et la date de modification d'une fiche de frais</p>
+<p class="description"><p>Met � jour l'�tat de la fiche de frais du visiteur $unIdVisiteur pour  le mois $unMois � la nouvelle valeur $unEtat et passe la date de modif �  la date d'aujourd'hui</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			modifierEtatFicheFrais
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$idCnx</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unMois</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unIdVisiteur</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$unEtat</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$idCnx</span><span class="var-description">: identifiant de connexion</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unIdVisiteur</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unMois</span><span class="var-description">: mois sous la forme aaaamm</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$unEtat</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionobtenirDernierMoisSaisi" id="functionobtenirDernierMoisSaisi"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">obtenirDernierMoisSaisi</span> (line <span class="line-number">144</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Fournit le mois de la derni�re fiche de frais d'un visiteur.</p>
+<p class="description"><p>Retourne le mois de la derni�re fiche de frais du visiteur d'id $unIdVisiteur.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> dernier mois sous la forme AAAAMM</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			obtenirDernierMoisSaisi
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$idCnx</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unIdVisiteur</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$idCnx</span><span class="var-description">: identifiant de connexion</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unIdVisiteur</span><span class="var-description">: id visiteur</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionobtenirDetailFicheFrais" id="functionobtenirDetailFicheFrais"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">obtenirDetailFicheFrais</span> (line <span class="line-number">98</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Fournit les informations d'une fiche de frais.</p>
+<p class="description"><p>Retourne les informations de la fiche de frais du mois de $unMois (MMAAAA)  sous la forme d'un tableau associatif dont les cl�s sont les noms des colonnes  (nbJustitificatifs, idEtat, libelleEtat, dateModif, montantValide).</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> tableau associatif de la fiche de frais</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			obtenirDetailFicheFrais
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$idCnx</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unMois</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unIdVisiteur</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$idCnx</span><span class="var-description">: identifiant de connexion</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unMois</span><span class="var-description">: mois demand� (MMAAAA)</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unIdVisiteur</span><span class="var-description">: id visiteur</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionobtenirDetailVisiteur" id="functionobtenirDetailVisiteur"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">obtenirDetailVisiteur</span> (line <span class="line-number">76</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Fournit les informations sur un visiteur demand�.</p>
+<p class="description"><p>Retourne les informations du visiteur d'id $unId sous la forme d'un tableau  associatif dont les cl�s sont les noms des colonnes(id, nom, prenom).</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> tableau associatif du visiteur</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			obtenirDetailVisiteur
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$idCnx</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unId</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$idCnx</span><span class="var-description">: identifiant de connexion</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unId</span><span class="var-description">: id de l'utilisateur</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionobtenirReqEltsForfaitFicheFrais" id="functionobtenirReqEltsForfaitFicheFrais"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">obtenirReqEltsForfaitFicheFrais</span> (line <span class="line-number">226</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retourne le texte de la requ�te select concernant les �l�ments forfaitis�s  d'un visiteur pour un mois donn�s.</p>
+<p class="description"><p>La requ�te de s�lection fournie permettra d'obtenir l'id, le libell� et la  quantit� des �l�ments forfaitis�s de la fiche de frais du visiteur  d'id $idVisiteur pour le mois $mois</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> texte de la requ�te select</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			obtenirReqEltsForfaitFicheFrais
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$unMois</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unIdVisiteur</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unMois</span><span class="var-description">: mois demand� (MMAAAA)</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unIdVisiteur</span><span class="var-description">: id visiteur</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionobtenirReqEltsHorsForfaitFicheFrais" id="functionobtenirReqEltsHorsForfaitFicheFrais"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">obtenirReqEltsHorsForfaitFicheFrais</span> (line <span class="line-number">245</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retourne le texte de la requ�te select concernant les �l�ments hors forfait  d'un visiteur pour un mois donn�s.</p>
+<p class="description"><p>La requ�te de s�lection fournie permettra d'obtenir l'id, la date, le libell�  et le montant des �l�ments hors forfait de la fiche de frais du visiteur  d'id $idVisiteur pour le mois $mois</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> texte de la requ�te select</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			obtenirReqEltsHorsForfaitFicheFrais
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$unMois</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unIdVisiteur</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unMois</span><span class="var-description">: mois demand� (MMAAAA)</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unIdVisiteur</span><span class="var-description">: id visiteur</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionobtenirReqMoisFicheFrais" id="functionobtenirReqMoisFicheFrais"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">obtenirReqMoisFicheFrais</span> (line <span class="line-number">209</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retourne le texte de la requ�te select concernant les mois pour lesquels un  visiteur a une fiche de frais.</p>
+<p class="description"><p>La requ�te de s�lection fournie permettra d'obtenir les mois (AAAAMM) pour  lesquels le visiteur $unIdVisiteur a une fiche de frais.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> texte de la requ�te select</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			obtenirReqMoisFicheFrais
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$unIdVisiteur</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unIdVisiteur</span><span class="var-description">: id visiteur</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionsupprimerLigneHF" id="functionsupprimerLigneHF"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">supprimerLigneHF</span> (line <span class="line-number">260</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Supprime une ligne hors forfait.</p>
+<p class="description"><p>Supprime dans la BD la ligne hors forfait d'id $unIdLigneHF</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			supprimerLigneHF
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$idCnx</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$unIdLigneHF</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$idLigneHF</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$idCnx</span><span class="var-description">: identifiant de connexion</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$idLigneHF</span><span class="var-description">: id de la ligne hors forfait</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$unIdLigneHF</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionverifierInfosConnexion" id="functionverifierInfosConnexion"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">verifierInfosConnexion</span> (line <span class="line-number">323</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Contr�le les informations de connexionn d'un utilisateur.</p>
+<p class="description"><p>V�rifie si les informations de connexion $unLogin, $unMdp sont ou non valides.  Retourne les informations de l'utilisateur sous forme de tableau associatif  dont les cl�s sont les noms des colonnes (id, nom, prenom, login, mdp)  si login et mot de passe existent, le bool�en false sinon.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> tableau associatif ou bool�en false</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			verifierInfosConnexion
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$idCnx</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unLogin</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$unMdp</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$idCnx</span><span class="var-description">: identifiant de connexion</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unLogin</span><span class="var-description">: login</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unMdp</span><span class="var-description">: mot de passe</span>			</li>
+				</ul>
+		
+	
+</div>
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 27 Feb 2014 18:07:23 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.4</a>
+	</p>
+	</div></body>
+</html>
