@@ -15,7 +15,7 @@
   // Demande-t-on une déconnexion ?
   $demandeDeconnexion = lireDonneeUrl("cmdDeconnecter");
   if ( $demandeDeconnexion == "on") {
-      deconnecterVisiteur();
+      deconnecterUtilisateur();
       header("Location: cAccueil.php");
   }
     

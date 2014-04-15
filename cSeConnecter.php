@@ -17,7 +17,7 @@
       $lgUser = verifierInfosConnexion($idConnexion, $login, $mdp) ;
       // si l'id utilisateur a été trouvé, donc informations fournies sous forme de tableau
       if ( is_array($lgUser) ) { 
-          affecterInfosConnecte($lgUser["id"], $lgUser["login"]);
+          affecterInfosConnecte($lgUser["id"], $lgUser["login"], $lgUser["idType"]);
       }
       else {
           ajouterErreur($tabErreurs, "Pseudo et/ou mot de passe incorrects");
