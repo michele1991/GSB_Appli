@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/wamp2/wamp/www/GSB_Appli/include/_bdGestionDonnees.lib.php</file>
             <file>file:/C:/wamp2/wamp/www/GSB_Appli/include/_sommaire.inc.php</file>
-            <file>file:/C:/wamp2/wamp/www/GSB_Appli/majGSB_main.php</file>
-            <file>file:/C:/wamp2/wamp/www/GSB_Appli/include/fct.inc.php</file>
-            <file>file:/C:/wamp2/wamp/www/GSB_Appli/cAccueil.php</file>
-            <file>file:/C:/wamp2/wamp/www/GSB_Appli/cSeConnecter.php</file>
+            <file>file:/C:/wamp2/wamp/www/GSB_Appli/include/_fonctionsValidFichesFrais.inc.js</file>
+            <file>file:/C:/wamp2/wamp/www/GSB_Appli/cValideFichesFrais.php</file>
         </group>
     </open-files>
 </project-private>

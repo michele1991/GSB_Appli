@@ -54,6 +54,7 @@
            </li>
            <?php 
               } 
+              // pour valider le scénario 1 de "validation fiche de frais"
               if ($libelleType == "Comptable") { 
            ?> 
            <li class="smenu"> 
