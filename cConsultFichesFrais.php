@@ -86,7 +86,7 @@ if ( ! estUtilisateurConnecte() ) {
 ?>
     <h3>Fiche de frais du mois de <?php echo obtenirLibelleMois(intval(substr($moisSaisi,4,2))) . " " . substr($moisSaisi,0,4); ?> : 
     <em><?php echo $tabFicheFrais["libelleEtat"]; ?> </em>
-    depuis le <em><?php echo $tabFicheFrais["dateModif"]; ?></em></h3>
+    depuis le <em><?php echo convertirDateAnglaisVersFrancais($tabFicheFrais["dateModif"]); ?></em></h3>
     <div class="encadre">
     <p>Montant validé : <?php echo $tabFicheFrais["montantValide"] ;
         ?>              

@@ -2,7 +2,7 @@
 /** 
  * Regroupe les fonctions utilitaires et de gestion des erreurs.
  * @package default
- * @todo  fonction estMoisValide à définir complètement ou à supprimer
+ * @todo  RAS
  */
 
 /** 

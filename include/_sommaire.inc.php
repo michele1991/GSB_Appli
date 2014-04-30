@@ -54,12 +54,17 @@
            </li>
            <?php 
               } 
-              // pour valider le scénario 1 de "validation fiche de frais"
+              // affichage seulement si le comptable a été authentifié
               if ($libelleType == "Comptable") { 
            ?> 
+           <!--pour valider le scénario 1 de "validation fiche de frais"-->
            <li class="smenu"> 
               <a href="cValideFichesFrais.php" title="Validation des fiches de Frais du mois précédent">Validation des fiches de Frais</a> 
            </li> 
+           <!--pour valider le scénario 1 de "Suivre le paiement fiche frais"-->
+           <li class="smenu"> 
+              <a href="cSuiviPaiementFicheFrais.php" title="Validation des fiches de Frais du mois précédent">Suivre le paiement des fiches de frais</a> 
+           </li>
            <?php 
               } 
            ?>

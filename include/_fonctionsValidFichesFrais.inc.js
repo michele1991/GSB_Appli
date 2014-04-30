@@ -1,38 +1,12 @@
 //<![CDATA[
-
 /**
- * Affiche un message en indiquant toute les modifications qui ont eu lieu au niveau forfait
- * Valide le scénario 6 de "valider fiche frais"
+ * Regroupe les fonctions pour l'utilisation du comptable
+ * Les fichiers cValideFichesFrais et cSuiviPaiementFicheFrais y font appel
+ * @author Michèle Schatt
  * 
- * @returns void
  */
-function afficheMsgInfosForfaitAActualisees() {
-    document.getElementById('msgFraisForfait').style.display = "block";
-    document.getElementById('actionsFraisForfait').style.display = "inline";
-    document.getElementById('lkActualiserLigneFraisForfait').style.display = "inline";
-    document.getElementById('lkReinitialiserLigneFraisForfait').style.display = "inline";
-}
 
-/**
- * Affiche un message en indiquant toute les modifications qui ont eu lieu au niveau hors forfait
- * @param int idAMontrer
- * @returns void
- */
-function afficheMsgInfosHorsForfaitAActualisees(idAMontrer) {
-    document.getElementById('msgFraisHorsForfait' + idAMontrer).style.display = "block";
-    document.getElementById('lkActualiserLigneFraisHF' + idAMontrer).style.display = "inline";
-    document.getElementById('lkReinitialiserLigneFraisHF' + idAMontrer).style.display = "inline";
-}
 
-/**
- * Affiche un message en indiquant les modification qui ont eu lieu pour le nombre de justificatifs
- * @returns void
- */
-function afficheMsgNbJustificatifs() {
-    document.getElementById('msgNbJustificatifs').style.display = "block";
-    document.getElementById('lkActualiserNbJustificatifs').style.display = "inline";
-    document.getElementById('lkReinitialiserNbJustificatifs').style.display = "inline";
-}
 
 /**
  * Réinitialise les modifications qui ont eue lieu au niveau forfait
@@ -44,7 +18,7 @@ function reinitialiserLigneFraisForfait() {
 
 /**
  * Réinitialise les modifications qui ont eue lieu au niveau hors forfait
- * @param int idElementHF
+ * @param int idElementHF attribut de la table lignefraishorsforfait
  * @returns void
  */
 function reinitialiserLigneFraisHorsForfait(idElementHF) {
@@ -61,7 +35,7 @@ function reinitialiserNbJustificatifs() {
 
 /**
  *Premet de changer le visiteur 
- * @param int idVisiteur
+ * @param int idVisiteur identifiant du visiteur
  * @returns void
  */
 function changerVisiteur(idVisiteur) {
@@ -89,8 +63,8 @@ function changerVisiteur(idVisiteur) {
 }
 
 /**
- * 
- * @returns {Boolean}
+ * Vérifie si il y a une modification en cours
+ * @returns booleen si il y a eu modification ou non
  */
 function getModifsEnCours() {
     var modif = false;
@@ -124,13 +98,14 @@ function getModifsEnCours() {
 }
 
 /**
- * Cette fonction permet d'actualiser les frais forfaits changé
- * Elle valide le scénario 5 de "Valider fiche frais"
+ * Cette fonction permet d'actualiser les frais forfaits changé et affiche un message
+ * avec tout les modifications qui ont eu lieu
+ * Elle valide le scénario 5 et 6 de "Valider fiche frais"
  * 
- * @param char(3) rep
- * @param char(3) nui
- * @param char(3) etp
- * @param char(3) km
+ * @param char(3) rep valeur de repas
+ * @param char(3) nui valeur de nuitée
+ * @param char(3) etp valeur de étape
+ * @param char(3) km valeur de kilomètre
  * @returns void
  */
 function actualiserLigneFraisForfait(rep,nui,etp,km) {
@@ -171,10 +146,10 @@ function actualiserLigneFraisForfait(rep,nui,etp,km) {
 /**
  * Permet d'actualiser la ligne hors forfait
  * 
- * @param int idElementHF
- * @param date dateElementHF
- * @param varchar(100) libelleElementHF
- * @param decimal(10,2) montantElementHF
+ * @param int idElementHF identifiant de lignefraishorsforfait
+ * @param date dateElementHF date de lignefraishorsforfait
+ * @param varchar(100) libelleElementHF libellé de lignefraishorsforfait
+ * @param decimal(10,2) montantElementHF montant de lignefraishorsforfait
  * @returns void
  */
 function actualiserLigneFraisHF(idElementHF,dateElementHF,libelleElementHF,montantElementHF) {
@@ -211,7 +186,7 @@ function actualiserLigneFraisHF(idElementHF,dateElementHF,libelleElementHF,monta
 /**
  * Actualise le nombre de justificatifs
  * 
- * @param int nbJustificatifs
+ * @param int nbJustificatifs nombre de justificatis
  * @returns void
  */
 function actualiserNbJustificatifs(nbJustificatifs) {
@@ -222,8 +197,10 @@ function actualiserNbJustificatifs(nbJustificatifs) {
 
 /**
  * Permet de reporter une ligne hors forfait au mois suivant
+ * Affichage du message de confirmation, si confirmer renvoie à cValideFicheFrais dans
+ * l'étape reporterLigneFraisHF
  * Valide l'exeption 7-a de "valider fiche frais"
- * @param int idElementHF
+ * @param int idElementHF identifiant de lignefraishorsforfait
  * @returns void
  */
 function reporterLigneFraisHF(idElementHF) {
@@ -238,10 +215,10 @@ function reporterLigneFraisHF(idElementHF) {
 }
 
 /**
- * Fonction qui permet de supprimer un frais hors forfait
- * Valide le scénario 7 de "valider fiche frais"
+ * Fonction qui permet de supprimer un frais hors forfait (mettre REFUSE en debut de libellé)
+ * Valide le scénario 7 et 8 de "valider fiche frais"
  * 
- * @param int idElementHF
+ * @param int idElementHF de lignefraishorsforfait
  * @returns void
  */
 function refuseLigneFraisHF(idElementHF) {
@@ -256,10 +233,10 @@ function refuseLigneFraisHF(idElementHF) {
 }
 
 /**
- * Fonction permettant de réintégrer un frais hors forfait
+ * Fonction permettant de réintégrer un frais hors forfait qui a était supprimé
  * 
- * @param int idElementHF
- * @returns {undefined}
+ * @param int idElementHF de lignefraishorsforfait
+ * @returns void
  */
 function reintegrerLigneFraisHF(idElementHF) {
     var question = 'Souhaitez-vous vraiment réintégrer la ligne de frais hors forfait du ' + document.getElementById('idDate' + idElementHF).value ;
@@ -274,7 +251,7 @@ function reintegrerLigneFraisHF(idElementHF) {
 
 /**
  * Cette fonction permet de valider la fiche 
- * Réponde au scénario 9 de "valider fiche frais"
+ * Répond au scénario 9 de "valider fiche frais"
  * 
  * @returns void
  */
@@ -315,4 +292,16 @@ function validerFiche() {
         }
     }
 }
+
+/**
+ * Mise en paiement des fiches de frais
+ * valide le scénario 5 de "Suivre le paiement fiche frais"
+ * 
+ * @returns void
+ */
+function mettreEnPaiementFicheFrais() {
+        if(confirm('Une fois validée, cette fiche n\'apparaîtra plus dans les fiches à mettre en paiement. Souhaitez-vous valider tout de même cette fiche ?')) {
+                document.getElementById('formMettreEnPaiement').submit();
+            }
+    }
 //]]>

@@ -2,7 +2,7 @@
 /**
  * Script de contrôle et d'affichage du cas d'utilisation "Valider fiche de frais"
  * @package default
- * @todo  à voir le report de ligne hors forfait au mois prochain (se fait pas dans la bdd)
+ * @todo RAS
  */
 $repInclude = './include/';
 require($repInclude . "_init.inc.php");
@@ -13,6 +13,8 @@ if (!estUtilisateurConnecte()) {
 }
 require($repInclude . "_entete.inc.html");
 require($repInclude . "_sommaire.inc.php");
+
+            // Déclaration des varibles
 
 // affectation du mois précédent pour la validation des fiches de frais
 $mois = sprintf("%04d%02d", date("Y"), date("m"));
@@ -29,6 +31,8 @@ $tabQteEltsForfait = lireDonneePost("txtEltsForfait", "");
 $tabEltsHorsForfait = lireDonneePost("txtEltsHorsForfait", "");
 $nbJustificatifs = lireDonneePost("nbJustificatifs", "");
 
+           // Appel des différents fonctions pour modifier les données
+              
 // structure de décision sur les différentes étapes du cas d'utilisation
 if ($etape == "choixVisiteur") {
     // L'utilisateur a choisi un visiteur
@@ -70,7 +74,7 @@ if ($etape == "choixVisiteur") {
     }
 } elseif ($etape == "reporterLigneFraisHF") {
     // L'utilisateur demande le report d'une ligne hors forfait dont les justificatifs ne sont pas arrivés à temps
-    reporterLigneHorsForfait($idConnexion, $tabEltsHorsForfait['id']);
+    reporterEltsHorsForfait($idConnexion, $moisChoisi, $visiteurChoisi, $tabEltsHorsForfait['id']);
 } elseif ($etape == "actualiserNbJustificatifs") {
     // L'utilisateur actualise le nombre de justificatifs
     $ok = estEntierPositif($nbJustificatifs);
@@ -133,7 +137,7 @@ if ($etape == "choixVisiteur") {
     }
     ?>
         
-    <!--Choix du visiteur répondant au scénario 2 de "valider fiche de frais-->
+    <!--Choix du visiteur, répondant au scénario 2 de "valider fiche de frais-->
     <form id="formChoixVisiteur" method="post" action="">
         <p>
             <input type="hidden" name="etape" value="choixVisiteur" />
@@ -164,15 +168,14 @@ if ($etape == "choixVisiteur") {
     if ($visiteurChoisi != "") {
         ?>
     
-        <!--Choix du mois répondant au scénario 2 de "valider fiche de frais-->
+        <!--Choix du mois, répondant au scénario 2 de "valider fiche de frais-->
         <form id="formChoixMois" method="post" action="">
             <p>
                 <input type="hidden" name="etape" value="choixMois" />
                 <input type="hidden" name="lstVisiteur" value="<?php echo $visiteurChoisi; ?>" />
                 
                 <?php
-                // si en deuxième paramètre on met 'CL' seulement les fiches clôturé serront afficher (pour l'instant qu'une par visiteur)
-                // si on met rien tout les fiches de tout les visiteur seront afficher
+                //Le deuxième paramètre permet d'afficher que les fiches qui ont été clôturé
                 $req = obtenirReqMoisFicheFrais($visiteurChoisi, 'CL');
                 $idJeuMois = mysql_query($req, $idConnexion);
                 $lgMois = mysql_fetch_assoc($idJeuMois);
@@ -209,8 +212,7 @@ if ($etape == "choixVisiteur") {
         <?php
     }
     // Valide le scénario 3 de "valider fiche frais" il n'y a pas de boutton valider, l'affichage se fait automatiquement
-    //si un visiteur et un mois est choisi pas besoin de mettre $visiteurChoisi != "" &&  comme dans tout les cas
-    // le mois peut être choisi que si un visiteur a déjà était sélectionné
+    // le mois peut être choisi que si un visiteur a déjà était sélectionné donc pas besoin de $visiteurChoisi != "" &&
     if ($moisChoisi != "") {
         // Traitement des frais si un visiteur et un mois ont été choisis
         $req = obtenirReqEltsForfaitFicheFrais($moisChoisi, $visiteurChoisi);
@@ -218,7 +220,7 @@ if ($etape == "choixVisiteur") {
         $lgEltsForfait = mysql_fetch_assoc($idJeuEltsForfait);
         //Valide le scénario 4 de "valider fiche frais" affichage des frais
         while (is_array($lgEltsForfait)) {
-            // On place la bonne valeur en fonction de l'identifiant de forfait
+            // Récupération des données de la bdd pour les frais forfait
             switch ($lgEltsForfait['idFraisForfait']) {
                 case "ETP":
                     $etp = $lgEltsForfait['quantite'];
@@ -237,6 +239,10 @@ if ($etape == "choixVisiteur") {
         }
         mysql_free_result($idJeuEltsForfait);
         ?>
+        <div id="msgFraisForfait" class="infosNonActualisees">
+            Attention, toutes les modifications doivent être actualisées pour être réellement prises en compte...
+        </div>
+        <!--Création de la partie frais forfait-->
         <form id="formFraisForfait" method="post" action="">
             <p>
                 <input type="hidden" name="etape" value="actualiserFraisForfait" />
@@ -247,24 +253,25 @@ if ($etape == "choixVisiteur") {
             <table style="color:white;" border="1">
                 <tr><th>Repas midi</th><th>Nuitée </th><th>Etape</th><th>Km </th><th>Actions</th></tr>
                 <tr align="center">
-                    <!--Si il y a un changement un message s'affiche, valide le scénario 6 de "valider fiche frais"-->
+                    <!--On place les données précedement récupéré dans le tableau de frais forfait-->
                     <td style="width:80px;">
                         <input type="text" size="3" id="idREP" name="txtEltsForfait[REP]" value="<?php echo $rep; ?>" 
-                               style="text-align:right;" onchange="afficheMsgInfosForfaitAActualisees();" />
+                               style="text-align:right;"  />
                     </td>
                     <td style="width:80px;">
                         <input type="text" size="3" id="idNUI" name="txtEltsForfait[NUI]" value="<?php echo $nui; ?>" 
-                               style="text-align:right;" onchange="afficheMsgInfosForfaitAActualisees();" />
+                               style="text-align:right;" " />
                     </td> 
                     <td style="width:80px;">
                         <input type="text" size="3" id="idETP" name="txtEltsForfait[ETP]" value="<?php echo $etp; ?>" 
-                               style="text-align:right;" onchange="afficheMsgInfosForfaitAActualisees();" />
+                               style="text-align:right;"  />
                     </td>
                     <td style="width:80px;">
                         <input type="text" size="3" id="idKM" name="txtEltsForfait[KM]" value="<?php echo $km; ?>" 
-                               style="text-align:right;" onchange="afficheMsgInfosForfaitAActualisees();" />
+                               style="text-align:right;" />
                     </td>
                     <td>
+                        <!--Si il y a un changement un message s'affiche, valide le scénario 6 de "valider fiche frais"-->
                         <div id="actionsFraisForfait" class="actions">
                             <!--Actualisation de frais forfait, répond au scénario 5-->
                             <a class="actions" id="lkActualiserLigneFraisForfait" 
@@ -281,9 +288,6 @@ if ($etape == "choixVisiteur") {
                 </tr>
             </table>
         </form>
-        <div id="msgFraisForfait" class="infosNonActualisees">
-            Attention, les modifications doivent être actualisées pour être réellement prises en compte...
-        </div>
         <p class="titre">&nbsp;</p>
         
         
@@ -328,18 +332,15 @@ if ($etape == "choixVisiteur") {
                             ?>                          
                             <td style="width:100px;">
                                 <input type="text" size="12" id="idDate<?php echo $lgEltsHorsForfait['id']; ?>" 
-                                       name="txtEltsHorsForfait[date]" value="<?php echo convertirDateAnglaisVersFrancais($lgEltsHorsForfait['date']); ?>" 
-                                       onchange="afficheMsgInfosHorsForfaitAActualisees(<?php echo $lgEltsHorsForfait['id']; ?>);" />
+                                       name="txtEltsHorsForfait[date]" value="<?php echo convertirDateAnglaisVersFrancais($lgEltsHorsForfait['date']); ?>"  />
                             </td>
                             <td style="width:220px;">
                                 <input type="text" size="30" id="idLibelle<?php echo $lgEltsHorsForfait['id']; ?>" 
-                                       name="txtEltsHorsForfait[libelle]" value="<?php echo filtrerChainePourNavig($lgEltsHorsForfait['libelle']); ?>" 
-                                       onchange="afficheMsgInfosHorsForfaitAActualisees(<?php echo $lgEltsHorsForfait['id']; ?>);" />
+                                       name="txtEltsHorsForfait[libelle]" value="<?php echo filtrerChainePourNavig($lgEltsHorsForfait['libelle']); ?>"  />
                             </td> 
                             <td style="width:90px;">
                                 <input type="text" size="10" id="idMontant<?php echo $lgEltsHorsForfait['id']; ?>" 
-                                       name="txtEltsHorsForfait[montant]" value="<?php echo $lgEltsHorsForfait['montant']; ?>" style="text-align:right;" 
-                                       onchange="afficheMsgInfosHorsForfaitAActualisees(<?php echo $lgEltsHorsForfait['id']; ?>);" />
+                                       name="txtEltsHorsForfait[montant]" value="<?php echo $lgEltsHorsForfait['montant']; ?>" style="text-align:right;"  />
                             </td>
                             <td>
                                 <div id="actionsFraisHorsForfait<?php echo $lgEltsHorsForfait['id']; ?>" class="actions">
@@ -387,15 +388,12 @@ if ($etape == "choixVisiteur") {
                         </tr>
                     </table>
                 </form>
-                <div id="msgFraisHorsForfait<?php echo $lgEltsHorsForfait['id']; ?>" class="infosNonActualisees">
-                    Attention, les modifications doivent être actualisées pour être réellement prises en compte...
-                </div>
                 <?php
                 $lgEltsHorsForfait = mysql_fetch_assoc($idJeuEltsHorsForfait);
             }
         }
         ?>
-            
+        <!--Affichage des nombre de justificatifs-->
         <form id="formNbJustificatifs" method="post" action="">
             <p>
                 <input type="hidden" name="etape" value="actualiserNbJustificatifs" />
@@ -407,8 +405,7 @@ if ($etape == "choixVisiteur") {
                 $laFicheFrais = obtenirDetailFicheFrais($idConnexion, $moisChoisi, $visiteurChoisi);
                 ?>
                 <input type="text" class="zone" size="4" id="idNbJustificatifs" name="nbJustificatifs" 
-                       value="<?php echo $laFicheFrais['nbJustificatifs']; ?>" style="text-align:center;" 
-                       onchange="afficheMsgNbJustificatifs();" />
+                       value="<?php echo $laFicheFrais['nbJustificatifs']; ?>" style="text-align:center;"  />
                 <div id="actionsNbJustificatifs" class="actions">
                     
                     <a class="actions" id="lkActualiserNbJustificatifs" 
@@ -425,10 +422,8 @@ if ($etape == "choixVisiteur") {
                 </div>
             </div>
         </form>
-        <div id="msgNbJustificatifs" class="infosNonActualisees">
-            Attention, le nombre de justificatifs doit être actualisé pour être réellement pris en compte...
-        </div>
 
+        <!--Premet la validation de la fiche de frais-->
         <form id="formValidFiche" method="post" action="">
             <p>
                 <input type="hidden" name="etape" value="validerFiche" />

@@ -4,7 +4,7 @@
  * Regroupe les fonctions d'accès aux données.
  * @package default
  * @author Arthur Martin
- * @todo Fonctions retournant plusieurs lignes sont à réécrire.
+ * @todo RAS
  */
 
 /**
@@ -68,11 +68,11 @@ function filtrerChainePourBD($str) {
 
 /**
  * Fournit les informations sur un utilisateur demandé. 
- * Retourne les informations du utilisateur d'id $unId sous la forme d'un tableau
+ * Retourne les informations de l'utilisateur d'id $unId sous la forme d'un tableau
  * associatif dont les clés sont les noms des colonnes(id, nom, prenom).
  * @param resource $idCnx identifiant de connexion
  * @param string $unId id de l'utilisateur
- * @return array  tableau associatif du utilisateur
+ * @return array  tableau associatif de l'utilisateur
  */
 function obtenirDetailUtilisateur($idCnx, $unId) {
     $id = filtrerChainePourBD($unId);
@@ -260,17 +260,6 @@ function obtenirReqEltsHorsForfaitFicheFrais($unMois, $unIdVisiteur) {
     return $requete;
 }
 
-/**
- * Supprime une ligne hors forfait.
- * Supprime dans la BD la ligne hors forfait d'id $unIdLigneHF
- * @param resource $idCnx identifiant de connexion
- * @param string $idLigneHF id de la ligne hors forfait
- * @return void
- */
-function supprimerLigneHF($idCnx, $unIdLigneHF) {
-    $requete = "delete from LigneFraisHorsForfait where id = " . $unIdLigneHF;
-    mysql_query($requete, $idCnx);
-}
 
 /**
  * Ajoute une nouvelle ligne hors forfait.
@@ -364,6 +353,23 @@ function modifierEtatFicheFrais($idCnx, $unMois, $unIdVisiteur, $unEtat) {
 }
 
 /**
+ * Modifie la montant Valide dans la base de données
+ * 
+ * @param resource $idCnx identifiant de connexion
+ * @param string $unIdVisiteur 
+ * @param string $unMois mois sous la forme aaaamm
+ * @param int $unResultat resultat du calcul du montant total
+ * @return void
+ * @author Michèle Schatt
+ */
+function modifierMontantValide($idCnx, $unMois, $unIdVisiteur, $unResultat) {
+    $requete = "update fichefrais set montantValide = '" . $unResultat .
+            "', dateModif = now() where idVisiteur ='" .
+            $unIdVisiteur . "' and mois = '" . $unMois . "'";
+    mysql_query($requete, $idCnx) or die(mysql_error());
+}
+
+/**
  * Retourne la requete d'obtention de la liste des visiteurs médicaux
  *
  * Retourne la requête d'obtention de la liste des visiteurs médicaux (id, nom et prenom)
@@ -416,7 +422,7 @@ function modifierEltsHorsForfait($idCnx, $desEltsHorsForfait) {
  * @param resource $idCnx identifiant de connexion
  * @param string $unIdVisiteur 
  * @param string $unMois mois sous la forme aaaamm
- * @param integer $nbJustificatifs
+ * @param int $nbJustificatifs nombre de justificatifs
  * @return void 
  */
 function modifierNbJustificatifsFicheFrais($idCnx, $unMois, $unIdVisiteur, $nbJustificatifs) {
@@ -426,15 +432,50 @@ function modifierNbJustificatifsFicheFrais($idCnx, $unMois, $unIdVisiteur, $nbJu
 }
 
 /**
- * Reporte d'un mois une ligne de frais hors forfait
- * 
- * 
+ * Reporte la ligne hors forfait au mois suivant 
  * @param resource $idCnx identifiant de connexion
- * @param int $unIdLigneHF identifiant de ligne hors forfait
+ * @param string $unMois mois sous la forme aaaamm
+ * @param string $unIdVisiteur 
+ * @param int $unIdLigneHorsForfait id de la ligne horsforfait sélectionnée
  * @return void
+ * @author Michèle Schatt
  */
-function reporterLigneHorsForfait($idCnx, $unIdLigneHF) {
-    mysql_query('CALL reporterLigneFraisHF(' . $unIdLigneHF . ');', $idCnx);
+function reporterEltsHorsForfait($idCnx, $unMois, $unIdVisiteur, $unIdLigneHorsForfait) {
+    $unMois = filtrerChainePourBD($unMois);
+    $unIdVisiteur = filtrerChainePourBD($unIdVisiteur);
+    $unIdLigneHorsForfait = filtrerChainePourBD($unIdLigneHorsForfait);
+    list($annee, $mois) = sscanf($unMois, "%04d%02d");
+ 
+    // Si le mois en cours est déjà 12 on passe au janvier et on augemente annee de 1
+    if($mois >= "12")
+    {
+        $mois = '01';
+        $annee = $annee++;
+        $moisComplet = $annee . $mois;
+    }
+    else
+    {
+        $mois = $mois + 1;
+        // pour tous les mois en dessous de 10, on met 0 à gauche
+        $mois =  str_pad($mois, 2, '0', STR_PAD_LEFT);
+        $moisComplet = $annee . $mois;
+    }
+ 
+    $requete = "UPDATE lignefraishorsforfait SET mois = '" .$moisComplet. "'  WHERE id = '" .$unIdLigneHorsForfait. "'";
+ 
+    $existeFicheFrais = existeFicheFrais($idCnx, $moisComplet, $unIdVisiteur);
+ 
+    // si elle n'existe pas, on la créée avec les éléments frais forfaitisés à 0
+    if ( !$existeFicheFrais ) {
+ 
+        ajouterFicheFrais($idCnx, $moisComplet , $unIdVisiteur);
+        mysql_query($requete, $idCnx);
+    }
+    else
+    {
+      mysql_query($requete, $idCnx);
+    }
+ 
 }
 
 /**
@@ -442,9 +483,10 @@ function reporterLigneHorsForfait($idCnx, $unIdLigneHF) {
  *
  * Cloture les fiches de frais antérieur au mois $unMois
  * et au besoin, créer une nouvelle de fiche de frais pour le mois courant
- * @param resource $idCnx identifiant de connexion
+ * @param ressource $idCnx identifiant de connexion
   * @param string $unMois mois sous la forme aaaamm
   * @return void 
+ * @author Michèle Schatt
  */
 function cloturerFichesFrais($idCnx, $unMois) {
     $req = "SELECT idVisiteur, mois FROM ficheFrais WHERE idEtat = 'CR' AND CAST(mois AS unsigned) < $unMois ;";
@@ -459,3 +501,16 @@ function cloturerFichesFrais($idCnx, $unMois) {
         }
     }
 }
+
+/**
+ * Change l'état MP en RB, fait appel a une procédure stockée
+ * 
+ * @param ressource $idCnx identifiant de connexion
+ * @return void
+ * @author Michèle Schatt
+ */
+function etatRemboursement($idCnx) {
+             mysql_query('CALL etat_remboursement();', $idCnx);
+        
+}
+       
