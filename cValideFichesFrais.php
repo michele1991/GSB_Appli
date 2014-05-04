@@ -31,13 +31,13 @@ $tabQteEltsForfait = lireDonneePost("txtEltsForfait", "");
 $tabEltsHorsForfait = lireDonneePost("txtEltsHorsForfait", "");
 $nbJustificatifs = lireDonneePost("nbJustificatifs", "");
 
-           // Appel des différents fonctions pour modifier les données
+// Appel des différents fonctions pour modifier les données
               
 // structure de décision sur les différentes étapes du cas d'utilisation
 if ($etape == "choixVisiteur") {
     // L'utilisateur a choisi un visiteur
 } elseif ($etape == "choixMois") {
-    // L'utilisateur a choisi un mois
+     // L'utilisateur a choisi un mois
 } elseif ($etape == "actualiserFraisForfait") {
     // L'utilisateur actualise les informations des frais forfaitisés
     // l'utilisateur valide les éléments forfaitisés         
@@ -49,7 +49,7 @@ if ($etape == "choixVisiteur") {
         modifierEltsForfait($idConnexion, $moisChoisi, $visiteurChoisi, $tabQteEltsForfait);
     }
 } elseif ($etape == "actualiserFraisHorsForfait") {
-    // L'utilisateur actualise les informations des frais hors forfait
+     // L'utilisateur actualise les informations des frais hors forfait
     // l'utilisateur valide les éléments non forfaitisés      
     // Une suppression est donc considérée comme une actualisation puisque c'est 
     // le libellé qui est mis à jour   
@@ -74,14 +74,14 @@ if ($etape == "choixVisiteur") {
     }
 } elseif ($etape == "reporterLigneFraisHF") {
     // L'utilisateur demande le report d'une ligne hors forfait dont les justificatifs ne sont pas arrivés à temps
-    reporterEltsHorsForfait($idConnexion, $moisChoisi, $visiteurChoisi, $tabEltsHorsForfait['id']);
+     reporterEltsHorsForfait($idConnexion, $moisChoisi, $visiteurChoisi, $tabEltsHorsForfait['id']);
 } elseif ($etape == "actualiserNbJustificatifs") {
     // L'utilisateur actualise le nombre de justificatifs
     $ok = estEntierPositif($nbJustificatifs);
     if (!$ok) {
         ajouterErreur($tabErreurs, "Le nombre de justificatifs doit être renseigné et numérique positif.");
     } else {
-        // mise à jour du nombre de justificatifs
+         // mise à jour du nombre de justificatifs
         modifierNbJustificatifsFicheFrais($idConnexion, $moisChoisi, $visiteurChoisi, $nbJustificatifs);
     }
 } elseif ($etape == "validerFiche") {
@@ -100,7 +100,7 @@ if ($etape == "choixVisiteur") {
             echo toStringErreurs($tabErreurs);
         } else {
             ?>
-            <p class="info">L'actualisation des quantités au forfait a bien été enregistrée</p>        
+            <p class="info">L'actualisation des quantités au forfait a bien été enregistrée</p>
             <?php
         }
     }
@@ -109,13 +109,13 @@ if ($etape == "choixVisiteur") {
             echo toStringErreurs($tabErreurs);
         } else {
             ?>
-            <p class="info">L'actualisation de la ligne de frais hors forfait a bien été enregistrée</p>        
+            <p class="info">L'actualisation de la ligne de frais hors forfait a bien été enregistrée</p>
             <?php
         }
     }
     if ($etape == "reporterLigneFraisHF") {
         ?>
-        <p class="info">La ligne de frais hors forfait a bien été reportée</p>        
+        <p class="info">La ligne de frais hors forfait a bien été reportée</p>
         <?php
     }
     if ($etape == "actualiserNbJustificatifs") {
@@ -123,14 +123,14 @@ if ($etape == "choixVisiteur") {
             echo toStringErreurs($tabErreurs);
         } else {
             ?>
-            <p class="info">L'actualisation du nombre de justificatifs a bien été enregistré</p>        
+            <p class="info">L'actualisation du nombre de justificatifs a bien été enregistré</p>
             <?php
         }
-    }
+    }  
     if ($etape == "validerFiche") {
         $lgVisiteur = obtenirDetailUtilisateur($idConnexion, $visiteurChoisi);
         ?>
-        <p class="info">La fiche de frais du visiteur <?php echo $lgVisiteur['prenom'] . " " . $lgVisiteur['nom']; ?> pour <?php echo obtenirLibelleMois(intval(substr($moisChoisi, 4, 2))) . " " . intval(substr($moisChoisi, 0, 4)); ?> a bien été enregistrée</p>        
+        <p class="info">La fiche de frais du visiteur <?php echo $lgVisiteur['prenom'] . " " . $lgVisiteur['nom']; ?> pour <?php echo obtenirLibelleMois(intval(substr($moisChoisi, 4, 2))) . " " . intval(substr($moisChoisi, 0, 4)); ?> a bien été enregistrée</p>
         <?php
         // On réinitialise le mois choisi pour forcer la disparition du bas de page, la réactualisation des mois et le choix d'un nouveau mois
         $moisChoisi = "";
@@ -207,13 +207,13 @@ if ($etape == "choixVisiteur") {
                     }
                     ?>            
                 </select>
-            </p>        
-        </form>
+            </p>
+        </form> 
         <?php
     }
     // Valide le scénario 3 de "valider fiche frais" il n'y a pas de boutton valider, l'affichage se fait automatiquement
     // le mois peut être choisi que si un visiteur a déjà était sélectionné donc pas besoin de $visiteurChoisi != "" &&
-    if ($moisChoisi != "") {
+    if ($moisChoisi != "") { 
         // Traitement des frais si un visiteur et un mois ont été choisis
         $req = obtenirReqEltsForfaitFicheFrais($moisChoisi, $visiteurChoisi);
         $idJeuEltsForfait = mysql_query($req, $idConnexion);
@@ -239,7 +239,7 @@ if ($etape == "choixVisiteur") {
         }
         mysql_free_result($idJeuEltsForfait);
         ?>
-        <div id="msgFraisForfait" class="infosNonActualisees">
+        <div id="msgActuAvantValid" class="infosNonActualisees">
             Attention, toutes les modifications doivent être actualisées pour être réellement prises en compte...
         </div>
         <!--Création de la partie frais forfait-->
@@ -253,7 +253,7 @@ if ($etape == "choixVisiteur") {
             <table style="color:white;" border="1">
                 <tr><th>Repas midi</th><th>Nuitée </th><th>Etape</th><th>Km </th><th>Actions</th></tr>
                 <tr align="center">
-                    <!--On place les données précedement récupéré dans le tableau de frais forfait-->
+                     <!--On place les données précedement récupéré dans le tableau de frais forfait-->
                     <td style="width:80px;">
                         <input type="text" size="3" id="idREP" name="txtEltsForfait[REP]" value="<?php echo $rep; ?>" 
                                style="text-align:right;"  />
@@ -290,7 +290,7 @@ if ($etape == "choixVisiteur") {
         </form>
         <p class="titre">&nbsp;</p>
         
-        
+                
         <div style="clear:left;"><h2>Hors forfait</h2></div>
         <?php
         // On récupère les lignes hors forfaits
@@ -304,33 +304,33 @@ if ($etape == "choixVisiteur") {
         <p class="info">Pas de hors forfait à valider pour ce visiteur</p>
         <?php
         } else {
-                    
-            while (is_array($lgEltsHorsForfait)) {
-                ?>
-                <form id="formFraisHorsForfait<?php echo $lgEltsHorsForfait['id']; ?>" method="post" action="">
-                    <p>
-                        <input type="hidden" id="idEtape<?php echo $lgEltsHorsForfait['id']; ?>" name="etape" value="actualiserFraisHorsForfait" />
-                        <input type="hidden" name="lstVisiteur" value="<?php echo $visiteurChoisi; ?>" />
-                        <input type="hidden" name="lstMois" value="<?php echo $moisChoisi; ?>" />
-                        <input type="hidden" name="txtEltsHorsForfait[id]" value="<?php echo $lgEltsHorsForfait['id']; ?>" />
-                    </p>
-                    <table style="color:white;" border="1">
-                        <tr><th>Date</th><th>Libellé </th><th>Montant</th><th>Actions</th></tr>
-                        <?php
-                        // Si les frais n'ont pas déjà été refusés, on affiche normalement
+            
+        while (is_array($lgEltsHorsForfait)) {
+            ?>
+            <form id="formFraisHorsForfait<?php echo $lgEltsHorsForfait['id']; ?>" method="post" action="">
+                <p>
+                    <input type="hidden" id="idEtape<?php echo $lgEltsHorsForfait['id']; ?>" name="etape" value="actualiserFraisHorsForfait" />
+                    <input type="hidden" name="lstVisiteur" value="<?php echo $visiteurChoisi; ?>" />
+                    <input type="hidden" name="lstMois" value="<?php echo $moisChoisi; ?>" />
+                    <input type="hidden" name="txtEltsHorsForfait[id]" value="<?php echo $lgEltsHorsForfait['id']; ?>" />
+                </p>
+                <table style="color:white;" border="1">
+                    <tr><th>Date</th><th>Libellé </th><th>Montant</th><th>Actions</th></tr>
+                    <?php
+                     // Si les frais n'ont pas déjà été refusés, on affiche normalement
                         if (strpos($lgEltsHorsForfait['libelle'], 'REFUSÉ : ') === false) {
+                        ?>
+                        <tr>
+                            <?php
+                        }
+                        // Sinon on met la ligne en grisée
+                        else {
                             ?>
-                            <tr>
-                                <?php
-                            }
-                            // Sinon on met la ligne en grisée
-                            else {
-                                ?>
-                            <tr style="background-color:gainsboro;">
-                                <?php
-                            }
-                            ?>                          
-                            <td style="width:100px;">
+                        <tr style="background-color:gainsboro;">
+                            <?php
+                        }
+                        ?>                          
+                        <td style="width:100px;">
                                 <input type="text" size="12" id="idDate<?php echo $lgEltsHorsForfait['id']; ?>" 
                                        name="txtEltsHorsForfait[date]" value="<?php echo convertirDateAnglaisVersFrancais($lgEltsHorsForfait['date']); ?>"  />
                             </td>
@@ -343,9 +343,9 @@ if ($etape == "choixVisiteur") {
                                        name="txtEltsHorsForfait[montant]" value="<?php echo $lgEltsHorsForfait['montant']; ?>" style="text-align:right;"  />
                             </td>
                             <td>
-                                <div id="actionsFraisHorsForfait<?php echo $lgEltsHorsForfait['id']; ?>" class="actions">
-                                   
-                                    <a class="actions" id="lkActualiserLigneFraisHF<?php echo $lgEltsHorsForfait['id']; ?>" 
+                            <div id="actionsFraisHorsForfait<?php echo $lgEltsHorsForfait['id']; ?>" class="actions">
+                                
+                                <a class="actions" id="lkActualiserLigneFraisHF<?php echo $lgEltsHorsForfait['id']; ?>" 
                                        onclick="actualiserLigneFraisHF(<?php echo $lgEltsHorsForfait['id']; ?>,
                                                    '<?php echo convertirDateAnglaisVersFrancais($lgEltsHorsForfait['date']); ?>',
                                                    '<?php echo filtrerChainePourBD($lgEltsHorsForfait['libelle']); ?>',
@@ -373,24 +373,24 @@ if ($etape == "choixVisiteur") {
                                             <img src="images/refuserIcon.png" class="icon" alt="icone Supprimer" />
                                         </a>
                                         
-                                        <?php
-                                    } else {
-                                        ?>
-                                        <a class="actionsCritiques" id="lkReintegrerLigneFraisHF" onclick="reintegrerLigneFraisHF(<?php echo $lgEltsHorsForfait['id']; ?>);" 
+                                    <?php                                  
+                                } else {
+                                    ?>
+                                    <a class="actionsCritiques" id="lkReintegrerLigneFraisHF" onclick="reintegrerLigneFraisHF(<?php echo $lgEltsHorsForfait['id']; ?>);" 
                                            title="Réintégrer la ligne de frais hors forfait">
                                             <img src="images/reintegrerIcon.png" class="icon" alt="icone Réintégrer" />
                                         </a>
-                                        <?php
-                                    }
-                                    ?>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-                <?php
-                $lgEltsHorsForfait = mysql_fetch_assoc($idJeuEltsHorsForfait);
-            }
+                                    <?php
+                                }
+                                ?>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <?php
+            $lgEltsHorsForfait = mysql_fetch_assoc($idJeuEltsHorsForfait);
+        }
         }
         ?>
         <!--Affichage des nombre de justificatifs-->
@@ -422,8 +422,8 @@ if ($etape == "choixVisiteur") {
                 </div>
             </div>
         </form>
-
-        <!--Premet la validation de la fiche de frais-->
+        
+         <!--Premet la validation de la fiche de frais-->
         <form id="formValidFiche" method="post" action="">
             <p>
                 <input type="hidden" name="etape" value="validerFiche" />

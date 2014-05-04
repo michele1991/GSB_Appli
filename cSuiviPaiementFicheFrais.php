@@ -29,9 +29,9 @@ if ($etape == "choixVisiteur") {
 } elseif ($etape == "mettreEnPaiement") {
     // L'utilisateur valide la fiche l'état passe à "Mise en paiement" pour le scénario 6 de "Suivre le paiement fiche frais"
     modifierEtatFicheFrais($idConnexion, $moisChoisi, $visiteurChoisi, 'MP');
-    // Le montant valide est mise à jour avec le montant calculé
+    // Le montant valide est mise à jour dans les bdd avec le montant calculé
     modifierMontantValide($idConnexion, $moisChoisi, $visiteurChoisi, $resultat);
-    // mets l'état MP en RB valide l'exception 6-a 
+    // mets l'état MP en RB valide l'exception 6-a, fait appel à une procédure stockée
     etatRemboursement($idConnexion);
 }
     
@@ -139,7 +139,7 @@ if ($etape == "choixVisiteur") {
         $req = obtenirReqEltsForfaitFicheFrais($moisChoisi, $visiteurChoisi);
         $idJeuEltsForfait = mysql_query($req, $idConnexion);
         $lgEltsForfait = mysql_fetch_assoc($idJeuEltsForfait);
-        //Valide le scénario 4 de "valider fiche frais" affichage des frais
+        //Valide le scénario 4 de "Suivre le paiement" affichage des frais
         while (is_array($lgEltsForfait)) {
             // On place la bonne valeur en fonction de l'identifiant de forfait
             switch ($lgEltsForfait['idFraisForfait']) {
@@ -283,13 +283,7 @@ if ($etape == "choixVisiteur") {
             </p>
             <div class="titre">
                 Montant Total :
-                <?php                
-                //$resultat = $resultat + (($rep *25) + ($etp * 110) + ($km * 0.62) + ($nui * 80)) ;
-                /*if (strpos($lgEltsHorsForfait['libelle'], 'REFUSÉ : ') === false) {
-                    $resultat = $resultat + $montantHF;
-                }*/
-                 
-                ?>
+ 
                 <input type="text" class="zone" size="20" readonly="readonly" id="idMontantValide" name="montantValide" style="border:0px;"
                        value="<?php echo $resultat; ?> €" style="text-align:center;" />
                 

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   <html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
 			<!-- template designed by Marco Von Ballmoos -->
 			<title></title>
 			<link rel="stylesheet" href="media/stylesheet.css" />
-			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+			<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
 		</head>
 		<body>
 						<a name="top"></a>
@@ -26,11 +26,12 @@
 	<a class="index-letter" href="elementindex.html#l">l</a>
 	<a class="index-letter" href="elementindex.html#m">m</a>
 	<a class="index-letter" href="elementindex.html#n">n</a>
-	<a class="index-letter" href="elementindex.html#"></a>
-	<a class="index-letter" href="elementindex.html#s">s</a>
+	<a class="index-letter" href="elementindex.html#o">o</a>
+	<a class="index-letter" href="elementindex.html#r">r</a>
 	<a class="index-letter" href="elementindex.html#t">t</a>
 	<a class="index-letter" href="elementindex.html#u">u</a>
 	<a class="index-letter" href="elementindex.html#v">v</a>
+	<a class="index-letter" href="elementindex.html#_">_</a>
 </div>
 
 	<a name="a"></a>
@@ -45,7 +46,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionactiverBD">activerBD()</a> in _bdGestionDonnees.lib.php</div>
-							<div class="index-item-description">S�lectionne (rend active) la base de donn�es.</div>
+							<div class="index-item-description">Sélectionne (rend active) la base de données.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">affecterInfosConnecte</span>
@@ -66,7 +67,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionajouterFicheFrais">ajouterFicheFrais()</a> in _bdGestionDonnees.lib.php</div>
-							<div class="index-item-description">Ajoute une nouvelle fiche de frais et les �l�ments forfaitis�s associ�s,  Ajoute la fiche de frais du mois de $unMois (MMAAAA) du visiteur  $idVisiteur, avec les �l�ments forfaitis�s associ�s dont la quantit� initiale  est affect�e � 0. Cl�t �ventuellement la fiche de frais pr�c�dente du visiteur.</div>
+							<div class="index-item-description">Ajoute une nouvelle fiche de frais et les éléments forfaitisés associés,  Ajoute la fiche de frais du mois de $unMois (MMAAAA) du visiteur  $idVisiteur, avec les éléments forfaitisés associés dont la quantité initiale  est affectée à 0. Clôt éventuellement la fiche de frais précédente du visiteur.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">ajouterLigneHF</span>
@@ -96,11 +97,18 @@
 			<div class="index-item-details"><a href="default/_cConsultFichesFrais.php.html">cConsultFichesFrais.php</a> in cConsultFichesFrais.php</div>
 					</dd>
 			<dt class="field">
+						<span class="method-title">cloturerFichesFrais</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functioncloturerFichesFrais">cloturerFichesFrais()</a> in _bdGestionDonnees.lib.php</div>
+							<div class="index-item-description">Cloture les fiches de frais antérieur au mois $unMois</div>
+					</dd>
+			<dt class="field">
 						<span class="method-title">connecterServeurBD</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionconnecterServeurBD">connecterServeurBD()</a> in _bdGestionDonnees.lib.php</div>
-							<div class="index-item-description">Se connecte au serveur de donn�es MySql.</div>
+							<div class="index-item-description">Se connecte au serveur de données MySql.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">convertirDateAnglaisVersFrancais</span>
@@ -152,6 +160,18 @@
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="default/_cSeDeconnecter.php.html">cSeDeconnecter.php</a> in cSeDeconnecter.php</div>
 					</dd>
+			<dt class="field">
+						<span class="include-title">cSuiviPaiementFicheFrais.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_cSuiviPaiementFicheFrais.php.html">cSuiviPaiementFicheFrais.php</a> in cSuiviPaiementFicheFrais.php</div>
+					</dd>
+			<dt class="field">
+						<span class="include-title">cValideFichesFrais.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_cValideFichesFrais.php.html">cValideFichesFrais.php</a> in cValideFichesFrais.php</div>
+					</dd>
 		</dl>
 	<a name="d"></a>
 	<div class="index-letter-section">
@@ -165,14 +185,14 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functiondeconnecterServeurBD">deconnecterServeurBD()</a> in _bdGestionDonnees.lib.php</div>
-							<div class="index-item-description">Ferme la connexion au serveur de donn�es.</div>
+							<div class="index-item-description">Ferme la connexion au serveur de données.</div>
 					</dd>
 			<dt class="field">
-						<span class="method-title">deconnecterVisiteur</span>
+						<span class="method-title">deconnecterUtilisateur</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="default/_include---_gestionSession.lib.php.html#functiondeconnecterVisiteur">deconnecterVisiteur()</a> in _gestionSession.lib.php</div>
-							<div class="index-item-description">Déconnecte le visiteur qui s'est identifié sur le site.</div>
+			<div class="index-item-details"><a href="default/_include---_gestionSession.lib.php.html#functiondeconnecterUtilisateur">deconnecterUtilisateur()</a> in _gestionSession.lib.php</div>
+							<div class="index-item-description">Déconnecte l'utilisateur qui s'est identifié sur le site.</div>
 					</dd>
 		</dl>
 	<a name="e"></a>
@@ -204,18 +224,25 @@
 							<div class="index-item-description">Vérifie si une chaîne fournie est bien numérique entière positive.</div>
 					</dd>
 			<dt class="field">
-						<span class="method-title">estVisiteurConnecte</span>
+						<span class="method-title">estUtilisateurConnecte</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="default/_include---_gestionSession.lib.php.html#functionestVisiteurConnecte">estVisiteurConnecte()</a> in _gestionSession.lib.php</div>
-							<div class="index-item-description">Vérifie si un visiteur s'est connecté sur le site.</div>
+			<div class="index-item-details"><a href="default/_include---_gestionSession.lib.php.html#functionestUtilisateurConnecte">estUtilisateurConnecte()</a> in _gestionSession.lib.php</div>
+							<div class="index-item-description">Vérifie si un utilisateur s'est connecté sur le site.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">etatRemboursement</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionetatRemboursement">etatRemboursement()</a> in _bdGestionDonnees.lib.php</div>
+							<div class="index-item-description">Change l'état MP en RB, fait appel a une procédure stockée</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">existeFicheFrais</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionexisteFicheFrais">existeFicheFrais()</a> in _bdGestionDonnees.lib.php</div>
-							<div class="index-item-description">V�rifie si une fiche de frais existe ou non.</div>
+							<div class="index-item-description">Vérifie si une fiche de frais existe ou non.</div>
 					</dd>
 		</dl>
 	<a name="f"></a>
@@ -230,7 +257,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionfiltrerChainePourBD">filtrerChainePourBD()</a> in _bdGestionDonnees.lib.php</div>
-							<div class="index-item-description">Echappe les caract�res sp�ciaux d'une cha�ne.</div>
+							<div class="index-item-description">Echappe les caractères spéciaux d'une chaîne.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">filtrerChainePourNavig</span>
@@ -370,14 +397,35 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionmodifierEltsForfait">modifierEltsForfait()</a> in _bdGestionDonnees.lib.php</div>
-							<div class="index-item-description">Modifie les quantit�s des �l�ments forfaitis�s d'une fiche de frais.</div>
+							<div class="index-item-description">Modifie les quantités des éléments forfaitisés d'une fiche de frais.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">modifierEltsHorsForfait</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionmodifierEltsHorsForfait">modifierEltsHorsForfait()</a> in _bdGestionDonnees.lib.php</div>
+							<div class="index-item-description">Modifie les quantités des éléments non forfaitisés d'une fiche de frais.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">modifierEtatFicheFrais</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionmodifierEtatFicheFrais">modifierEtatFicheFrais()</a> in _bdGestionDonnees.lib.php</div>
-							<div class="index-item-description">Modifie l'�tat et la date de modification d'une fiche de frais</div>
+							<div class="index-item-description">Modifie l'état et la date de modification d'une fiche de frais</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">modifierMontantValide</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionmodifierMontantValide">modifierMontantValide()</a> in _bdGestionDonnees.lib.php</div>
+							<div class="index-item-description">Modifie la montant Valide dans la base de données</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">modifierNbJustificatifsFicheFrais</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionmodifierNbJustificatifsFicheFrais">modifierNbJustificatifsFicheFrais()</a> in _bdGestionDonnees.lib.php</div>
+							<div class="index-item-description">Modifie le nombre de justificatifs d'une fiche de frais</div>
 					</dd>
 		</dl>
 	<a name="n"></a>
@@ -407,7 +455,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionobtenirDernierMoisSaisi">obtenirDernierMoisSaisi()</a> in _bdGestionDonnees.lib.php</div>
-							<div class="index-item-description">Fournit le mois de la derni�re fiche de frais d'un visiteur.</div>
+							<div class="index-item-description">Fournit le mois de la dernière fiche de frais d'un visiteur.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">obtenirDetailFicheFrais</span>
@@ -417,18 +465,18 @@
 							<div class="index-item-description">Fournit les informations d'une fiche de frais.</div>
 					</dd>
 			<dt class="field">
-						<span class="method-title">obtenirDetailVisiteur</span>
+						<span class="method-title">obtenirDetailUtilisateur</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionobtenirDetailVisiteur">obtenirDetailVisiteur()</a> in _bdGestionDonnees.lib.php</div>
-							<div class="index-item-description">Fournit les informations sur un visiteur demand�.</div>
+			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionobtenirDetailUtilisateur">obtenirDetailUtilisateur()</a> in _bdGestionDonnees.lib.php</div>
+							<div class="index-item-description">Fournit les informations sur un utilisateur demandé.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">obtenirIdUserConnecte</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="default/_include---_gestionSession.lib.php.html#functionobtenirIdUserConnecte">obtenirIdUserConnecte()</a> in _gestionSession.lib.php</div>
-							<div class="index-item-description">Fournit l'id du visiteur connecté.</div>
+							<div class="index-item-description">Fournit l'id de l'utilisateur connecté.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">obtenirLibelleMois</span>
@@ -442,36 +490,43 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionobtenirReqEltsForfaitFicheFrais">obtenirReqEltsForfaitFicheFrais()</a> in _bdGestionDonnees.lib.php</div>
-							<div class="index-item-description">Retourne le texte de la requ�te select concernant les �l�ments forfaitis�s  d'un visiteur pour un mois donn�s.</div>
+							<div class="index-item-description">Retourne le texte de la requête select concernant les éléments forfaitisés  d'un visiteur pour un mois donnés.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">obtenirReqEltsHorsForfaitFicheFrais</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionobtenirReqEltsHorsForfaitFicheFrais">obtenirReqEltsHorsForfaitFicheFrais()</a> in _bdGestionDonnees.lib.php</div>
-							<div class="index-item-description">Retourne le texte de la requ�te select concernant les �l�ments hors forfait  d'un visiteur pour un mois donn�s.</div>
+							<div class="index-item-description">Retourne le texte de la requête select concernant les éléments hors forfait  d'un visiteur pour un mois donnés.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">obtenirReqListeVisiteurs</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionobtenirReqListeVisiteurs">obtenirReqListeVisiteurs()</a> in _bdGestionDonnees.lib.php</div>
+							<div class="index-item-description">Retourne la requete d'obtention de la liste des visiteurs médicaux</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">obtenirReqMoisFicheFrais</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionobtenirReqMoisFicheFrais">obtenirReqMoisFicheFrais()</a> in _bdGestionDonnees.lib.php</div>
-							<div class="index-item-description">Retourne le texte de la requ�te select concernant les mois pour lesquels un  visiteur a une fiche de frais.</div>
+							<div class="index-item-description">Retourne le texte de la requête select concernant les mois pour lesquels un  visiteur a une fiche de frais.</div>
 					</dd>
 		</dl>
-	<a name="s"></a>
+	<a name="r"></a>
 	<div class="index-letter-section">
-		<div style="float: left" class="index-letter-title">s</div>
+		<div style="float: left" class="index-letter-title">r</div>
 		<div style="float: right"><a href="#top">top</a></div>
 		<div style="clear: both"></div>
 	</div>
 	<dl>
 			<dt class="field">
-						<span class="method-title">supprimerLigneHF</span>
+						<span class="method-title">reporterEltsHorsForfait</span>
 					</dt>
 		<dd class="index-item-body">
-			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionsupprimerLigneHF">supprimerLigneHF()</a> in _bdGestionDonnees.lib.php</div>
-							<div class="index-item-description">Supprime une ligne hors forfait.</div>
+			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionreporterEltsHorsForfait">reporterEltsHorsForfait()</a> in _bdGestionDonnees.lib.php</div>
+							<div class="index-item-description">Reporte la ligne hors forfait au mois suivant</div>
 					</dd>
 		</dl>
 	<a name="t"></a>
@@ -522,7 +577,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="default/_include---_bdGestionDonnees.lib.php.html#functionverifierInfosConnexion">verifierInfosConnexion()</a> in _bdGestionDonnees.lib.php</div>
-							<div class="index-item-description">Contr�le les informations de connexionn d'un utilisateur.</div>
+							<div class="index-item-description">Contrôle les informations de connexionn d'un utilisateur.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">verifierLigneFraisHF</span>
@@ -588,10 +643,11 @@
 	<a class="index-letter" href="elementindex.html#l">l</a>
 	<a class="index-letter" href="elementindex.html#m">m</a>
 	<a class="index-letter" href="elementindex.html#n">n</a>
-	<a class="index-letter" href="elementindex.html#"></a>
-	<a class="index-letter" href="elementindex.html#s">s</a>
+	<a class="index-letter" href="elementindex.html#o">o</a>
+	<a class="index-letter" href="elementindex.html#r">r</a>
 	<a class="index-letter" href="elementindex.html#t">t</a>
 	<a class="index-letter" href="elementindex.html#u">u</a>
 	<a class="index-letter" href="elementindex.html#v">v</a>
+	<a class="index-letter" href="elementindex.html#_">_</a>
 </div>	</body>
 </html>

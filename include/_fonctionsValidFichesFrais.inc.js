@@ -44,7 +44,7 @@ function changerVisiteur(idVisiteur) {
             if(!idVisiteur) {
                 // C'est le bouton "Changer de visiteur" qui a été utilisé
                 // On recharge la page comme si on avait cliqué dans le sommaire
-                window.location = "./cValidFichesFrais.php";
+                window.location = "./cValideFichesFrais.php";
             } else {
                 // On change de visiteur avec le visiteur choisi
                 document.getElementById('formChoixVisiteur').submit();
@@ -54,7 +54,7 @@ function changerVisiteur(idVisiteur) {
         if(!idVisiteur) {
             // C'est le bouton "Changer de visiteur" qui a été utilisé
             // On recharge la page comme si on avait cliqué dans le sommaire
-            window.location = "./cValidFichesFrais.php";
+            window.location = "./cValideFichesFrais.php";
         } else {
             // On change de visiteur avec le visiteur choisi
             document.getElementById('formChoixVisiteur').submit();
