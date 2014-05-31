@@ -99,8 +99,8 @@ function obtenirDetailUtilisateur($idCnx, $unId) {
 function obtenirDetailFicheFrais($idCnx, $unMois, $unIdVisiteur) {
     $unMois = filtrerChainePourBD($unMois);
     $ligne = false;
-    $requete = "select IFNULL(nbJustificatifs,0) as nbJustificatifs, Etat.id as idEtat, libelle as libelleEtat, dateModif, montantValide
-    from FicheFrais inner join Etat on idEtat = Etat.id 
+    $requete = "select IFNULL(nbJustificatifs,0) as nbJustificatifs, etat.id as idEtat, libelle as libelleEtat, dateModif, montantValide
+    from fichefrais inner join etat on idEtat = etat.id 
     where idVisiteur='" . $unIdVisiteur . "' and mois='" . $unMois . "'";
     $idJeuRes = mysql_query($requete, $idCnx);
     if ($idJeuRes) {
@@ -122,7 +122,7 @@ function obtenirDetailFicheFrais($idCnx, $unMois, $unIdVisiteur) {
  */
 function existeFicheFrais($idCnx, $unMois, $unIdVisiteur) {
     $unMois = filtrerChainePourBD($unMois);
-    $requete = "select idVisiteur from FicheFrais where idVisiteur='" . $unIdVisiteur .
+    $requete = "select idVisiteur from fichefrais where idVisiteur='" . $unIdVisiteur .
             "' and mois='" . $unMois . "'";
     $idJeuRes = mysql_query($requete, $idCnx);
     $ligne = false;
@@ -143,7 +143,7 @@ function existeFicheFrais($idCnx, $unMois, $unIdVisiteur) {
  * @return string dernier mois sous la forme AAAAMM
  */
 function obtenirDernierMoisSaisi($idCnx, $unIdVisiteur) {
-    $requete = "select max(mois) as dernierMois from FicheFrais where idVisiteur='" .
+    $requete = "select max(mois) as dernierMois from fichefrais where idVisiteur='" .
             $unIdVisiteur . "'";
     $idJeuRes = mysql_query($requete, $idCnx);
     $dernierMois = false;
@@ -175,20 +175,20 @@ function ajouterFicheFrais($idCnx, $unMois, $unIdVisiteur) {
     }
 
     // ajout de la fiche de frais à l'état Créé
-    $requete = "insert into FicheFrais (idVisiteur, mois, nbJustificatifs, montantValide, idEtat, dateModif) values ('"
+    $requete = "insert into fichefrais (idVisiteur, mois, nbJustificatifs, montantValide, idEtat, dateModif) values ('"
             . $unIdVisiteur
             . "','" . $unMois . "',0,NULL, 'CR', '" . date("Y-m-d") . "')";
     mysql_query($requete, $idCnx);
 
     // ajout des éléments forfaitisés
-    $requete = "select id from FraisForfait";
+    $requete = "select id from fraisforfait";
     $idJeuRes = mysql_query($requete, $idCnx);
     if ($idJeuRes) {
         $ligne = mysql_fetch_assoc($idJeuRes);
         while (is_array($ligne)) {
             $idFraisForfait = $ligne["id"];
             // insertion d'une ligne frais forfait dans la base
-            $requete = "insert into LigneFraisForfait (idVisiteur, mois, idFraisForfait, quantite)
+            $requete = "insert into lignefraisforfait (idVisiteur, mois, idFraisForfait, quantite)
                         values ('" . $unIdVisiteur . "','" . $unMois . "','" . $idFraisForfait . "',0)";
             mysql_query($requete, $idCnx);
             // passage au frais forfait suivant
@@ -235,8 +235,8 @@ function obtenirReqMoisFicheFrais($unIdVisiteur, $unEtat = "") {
  */
 function obtenirReqEltsForfaitFicheFrais($unMois, $unIdVisiteur) {
     $unMois = filtrerChainePourBD($unMois);
-    $requete = "select idFraisForfait, libelle, quantite from LigneFraisForfait
-              inner join FraisForfait on FraisForfait.id = LigneFraisForfait.idFraisForfait
+    $requete = "select idFraisForfait, libelle, quantite from lignefraisforfait
+              inner join fraisforfait on fraisforfait.id = lignefraisforfait.idFraisForfait
               where idVisiteur='" . $unIdVisiteur . "' and mois='" . $unMois . "'";
     return $requete;
 }
@@ -254,7 +254,7 @@ function obtenirReqEltsForfaitFicheFrais($unMois, $unIdVisiteur) {
  */
 function obtenirReqEltsHorsForfaitFicheFrais($unMois, $unIdVisiteur) {
     $unMois = filtrerChainePourBD($unMois);
-    $requete = "select id, date, libelle, montant from LigneFraisHorsForfait
+    $requete = "select id, date, libelle, montant from lignefraishorsforfait
               where idVisiteur='" . $unIdVisiteur
             . "' and mois='" . $unMois . "'";
     return $requete;
@@ -278,7 +278,7 @@ function ajouterLigneHF($idCnx, $unMois, $unIdVisiteur, $uneDateHF, $unLibelleHF
     $unLibelleHF = filtrerChainePourBD($unLibelleHF);
     $uneDateHF = filtrerChainePourBD(convertirDateFrancaisVersAnglais($uneDateHF));
     $unMois = filtrerChainePourBD($unMois);
-    $requete = "insert into LigneFraisHorsForfait(idVisiteur, mois, date, libelle, montant) 
+    $requete = "insert into lignefraishorsforfait(idVisiteur, mois, date, libelle, montant) 
                 values ('" . $unIdVisiteur . "','" . $unMois . "','" . $uneDateHF . "','" . $unLibelleHF . "'," . $unMontantHF . ")";
     mysql_query($requete, $idCnx);
 }
@@ -301,7 +301,7 @@ function modifierEltsForfait($idCnx, $unMois, $unIdVisiteur, $desEltsForfait) {
     $unMois = filtrerChainePourBD($unMois);
     $unIdVisiteur = filtrerChainePourBD($unIdVisiteur);
     foreach ($desEltsForfait as $idFraisForfait => $quantite) {
-        $requete = "update LigneFraisForfait set quantite = " . $quantite
+        $requete = "update lignefraisforfait set quantite = " . $quantite
                 . " where idVisiteur = '" . $unIdVisiteur . "' and mois = '"
                 . $unMois . "' and idFraisForfait='" . $idFraisForfait . "'";
         mysql_query($requete, $idCnx);
@@ -346,7 +346,7 @@ function verifierInfosConnexion($idCnx, $unLogin, $unMdp) {
  * @return void 
  */
 function modifierEtatFicheFrais($idCnx, $unMois, $unIdVisiteur, $unEtat) {
-    $requete = "update FicheFrais set idEtat = '" . $unEtat .
+    $requete = "update fichefrais set idEtat = '" . $unEtat .
             "', dateModif = now() where idVisiteur ='" .
             $unIdVisiteur . "' and mois = '" . $unMois . "'";
     mysql_query($requete, $idCnx) or die(mysql_error());
@@ -406,7 +406,7 @@ function modifierEltsHorsForfait($idCnx, $desEltsHorsForfait) {
                 break;
         }
     }
-    $requete = "update LigneFraisHorsForfait"
+    $requete = "update lignefraishorsforfait"
             . " set libelle = '" . filtrerChainePourBD($libelleFraisHorsForfait) . "',"
             . " date = '" . convertirDateFrancaisVersAnglais($dateFraisHorsForfait) . "',"
             . " montant = " . $montantFraisHorsForfait
@@ -426,7 +426,7 @@ function modifierEltsHorsForfait($idCnx, $desEltsHorsForfait) {
  * @return void 
  */
 function modifierNbJustificatifsFicheFrais($idCnx, $unMois, $unIdVisiteur, $nbJustificatifs) {
-    $requete = "update FicheFrais set nbJustificatifs = " . $nbJustificatifs .
+    $requete = "update fichefrais set nbJustificatifs = " . $nbJustificatifs .
             " where idVisiteur ='" . $unIdVisiteur . "' and mois = '" . $unMois . "'";
     mysql_query($requete, $idCnx);
 }
@@ -489,7 +489,7 @@ function reporterEltsHorsForfait($idCnx, $unMois, $unIdVisiteur, $unIdLigneHorsF
  * @author Michèle Schatt
  */
 function cloturerFichesFrais($idCnx, $unMois) {
-    $req = "SELECT idVisiteur, mois FROM ficheFrais WHERE idEtat = 'CR' AND CAST(mois AS unsigned) < $unMois ;";
+    $req = "SELECT idVisiteur, mois FROM fichefrais WHERE idEtat = 'CR' AND CAST(mois AS unsigned) < $unMois ;";
     $idJeuFichesFrais = mysql_query($req, $idCnx);
     while ($lgFicheFrais = mysql_fetch_array($idJeuFichesFrais)) {
         modifierEtatFicheFrais($idCnx, $lgFicheFrais['mois'], $lgFicheFrais['idVisiteur'], 'CL');

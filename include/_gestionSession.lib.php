@@ -45,11 +45,6 @@ function affecterInfosConnecte($id, $login, $type) {
 }
 
 /** 
- * Déconnecte le visiteur qui s'est identifié sur le site.                     
- *
- * @return void
- */
-/** 
  * Déconnecte l'utilisateur qui s'est identifié sur le site. 
  * 
  * @return void 
